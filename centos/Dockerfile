@@ -1,4 +1,4 @@
-FROM cern/cc7-base
+FROM centos
 
 COPY packages packages
 
@@ -11,6 +11,10 @@ RUN yum update -q -y \
 RUN cd /tmp \
  && git clone https://github.com/root-project/root /usr/src/root \
  && cmake3 /usr/src/root \
+	-Droofit=ON \
+	-Dtmva=ON \
+	-Dminuit2=ON \
+	-Dpython=ON \
     -Dbuiltin_tbb=ON \
 	-Dall=ON \
 	-Dcxx11=ON \
@@ -25,7 +29,7 @@ RUN cd /tmp \
 	-Dbuiltin_unuran=OFF \
 	-Dbuiltin_vdt=ON \
 	-Dbuiltin_veccore=ON \
-	-Dbuiltin_xrootd=OFF \
+	-Dbuiltin_xrootd=ON \
 	-Darrow=OFF \
 	-Dcastor=OFF \
 	-Dchirp=OFF \

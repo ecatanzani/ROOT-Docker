@@ -1,4 +1,4 @@
-FROM centos
+FROM cern/cc7-base
 
 COPY packages packages
 
@@ -45,4 +45,6 @@ RUN cd /tmp \
  && rm -rf /usr/src/root /tmp/*
 
 ENV PYTHONPATH /usr/local/lib
+RUN export LIBGL_ALWAYS_INDIRECT=1
+
 CMD root -b
